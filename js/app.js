@@ -3039,9 +3039,9 @@ module.exports = HandlebarsCompiler.template({"1":function(depth0,helpers,partia
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     var stack1;
 
-  return "<div class=\"row\">\r\n  <div class=\"col-xs-4\" id=\"left\">\r\n\r\n    <h2>Rescues in Need</h2>\r\n\r\n    <!-- item list -->\r\n\r\n"
+  return "<div id=\"map-canvas\"></div>\r\n<div class=\"row\">\r\n  <div class=\"col-xs-4\" id=\"left\">\r\n\r\n    <h2>Rescues in Need</h2>\r\n\r\n    <!-- item list -->\r\n\r\n"
     + ((stack1 = helpers.each.call(depth0,(depth0 != null ? depth0.request : depth0),{"name":"each","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
-    + "\r\n    <!-- /item list -->\r\n  </div>\r\n  <div class=\"col-xs-8\">\r\n    <div id=\"map-canvas\"></div>\r\n  </div>\r\n</div>\r\n";
+    + "\r\n    <!-- /item list -->\r\n  </div>\r\n  <div class=\"col-xs-8\">\r\n  </div>\r\n</div>\r\n";
 },"useData":true});
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/src/js/views/home.hbs","/src/js/views")
