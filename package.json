@@ -11,6 +11,7 @@
   "dependencies": {
     "gulp": "3.9.1",
     "gulp-clean": "0.3.2",
+    "gulp-connect": "5.0.0",
     "hbsfy": "2.7.0",
     "browserify":"13.1.0",
     "vinyl-source-stream": "1.1.0",

@@ -1,4 +1,5 @@
 var gulp       = require('gulp');
+var connect    = require('gulp-connect');
 var browserify = require('browserify');
 var source     = require('vinyl-source-stream');
 var clean      = require('gulp-clean');
@@ -22,7 +23,11 @@ gulp.task('clean', function() {
     .pipe(clean());
 });
 
-gulp.task('watch', ['clean', 'js'], function() {
+gulp.task('connect', function() {
+  connect.server();
+});
+
+gulp.task('watch', ['clean', 'js', 'connect'], function() {
   gulp.watch("src/js/**/*", ['js']);  
 });
 
