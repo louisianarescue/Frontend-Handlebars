@@ -32,11 +32,15 @@ var home = function () {
     $.each(data, function(key, data) {
       console.log(data);
       var rescuee = data.rescuee
-      var latLng = new google.maps.LatLng(rescuee.latitude, rescuee.longitude);
-      var marker = new google.maps.Marker({
-        position: latLng,
-        map: map
-      });
+      try{
+        var latLng = new google.maps.LatLng(rescuee.latitude, rescuee.longitude);
+        var marker = new google.maps.Marker({
+          position: latLng,
+          map: map
+        });
+      } catch(e){
+
+      }
     })
   }
 
@@ -61,7 +65,7 @@ var setup_ajax = function(){
 
       ['contact', 'contact'],
       ['address', 'address'],
-      ['zip', 'zip'],
+      //['zip', 'zip'],
       ['info', 'info']
     ]
     var formData = {'pet': $('#pet').find("option:selected").text(),
