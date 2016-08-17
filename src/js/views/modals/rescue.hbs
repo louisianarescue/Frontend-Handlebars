@@ -55,9 +55,18 @@
 
           <!-- Text input-->
           <div class="form-group">
-            <label class="col-md-4 control-label" for="number">Phone Number/Cell to Contact</label>
+            <label class="col-md-4 control-label" for="number">Your Phone Number/Cell to Contact</label>
             <div class="col-md-4">
               <input id="number" name="number" type="text" placeholder="Contact #" class="form-control input-md">
+
+            </div>
+          </div>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="address">Your Email to Contact</label>
+            <div class="col-md-4">
+              <input id="email" name="email" type="text" placeholder="Email" class="form-control input-lg">
 
             </div>
           </div>
@@ -73,7 +82,7 @@
 
           <!-- Text input-->
           <div class="form-group">
-            <label class="col-md-4 control-label" for="address">Address/Location Include City or Zip</label>
+            <label class="col-md-4 control-label" for="address">Address/Location Include City/zip</label>
             <div class="col-md-4">
               <input id="address" name="address" type="text" placeholder="Address" class="form-control input-lg">
 
@@ -94,7 +103,7 @@
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      <button type="button" class="btn btn-primary">Save changes</button>
+      <button type="button" id="submit_rescue" class="btn btn-primary" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Sending Request...">Save changes</button>
     </div>
   </div>
 </div>

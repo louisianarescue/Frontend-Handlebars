@@ -2,6 +2,7 @@ var page        = require('page')
 var homeView    = require('./views/home.hbs')
 var rescueModal = require('./views/modals/rescue.hbs')
 
+
 $.ajaxSetup({
   accepts: 'application/json',
   api: true,
@@ -11,6 +12,52 @@ $.ajaxSetup({
     }
   }
 });
+
+var setup_ajax = function(){
+
+  $('#submit_rescue').click(function(event){
+    console.log("DF");
+    key_val_pairs = [
+      ['name', 'name'],
+      ['people', 'people'],
+//      ['level', 'level'],
+//      ['pet', 'pet'],
+      ['number', 'number'],
+      ['email', 'email'],
+
+      ['contact', 'contact'],
+      ['address', 'address'],
+      //['zip', 'zip'],
+      ['info', 'info']
+    ]
+    var formData = {'pet': $('#pet').find("option:selected").text(),
+                    'level': $('#level').find("option:selected").text()};
+    for(i = 0; i < key_val_pairs.length; i++){
+      formData[key_val_pairs[i][0]] = $('input[name='+key_val_pairs[i][1]+']').val() || null;
+    }
+console.log(formData);
+    $this = $(this);
+    $(this).button('loading');
+    $.ajax({
+            type        : 'POST', 
+            url         : '/rescue/help',//'http://127.0.0.1:80', 
+            data        : formData, 
+            dataType    : 'json',
+            encode      : true
+    })
+    .done(function(data){
+        //$this.button('')
+
+            console.log("done");
+    })
+    .fail(function(){
+          $this.button('reset');
+
+      console.log("fucking failed");
+    });
+  });
+}
+
 
 var home = function (ctx) {
   var main = document.getElementById("main")
@@ -27,7 +74,9 @@ var home = function (ctx) {
     var $modal = $("#modal")
     var modal  = rescueModal({});
     $modal.html(modal).modal()
+    setup_ajax();
   })  
+
 
   var html = homeView(ctx.data);
   $(main).html(html);
