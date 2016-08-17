@@ -11,19 +11,19 @@ var home = function () {
     scrollWheel: false,
     zoom: 10
   };
-
-  var html = homeView({});
-  $(main).html(html);
   
-  var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-
   $('a[data-target="RequestModal"]').click(function(e) {
     var $modal = $("#modal")
     var modal  = rescueModal({});
     $modal.html(modal).modal()
-  })
-  
+  })  
+
   var callback = function(data) {
+    var html = homeView({request: data});
+    $(main).html(html);
+  
+    var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);   
+      
     $.each(data, function(key, data) {
       var latLng = new google.maps.LatLng(data.latitude, data.longitude);
       var marker = new google.maps.Marker({
@@ -33,7 +33,7 @@ var home = function () {
     })
   }
 
-  $.getJSON("http://louisianarescue.com/api/rescue/map", {
+  $.getJSON("/request.json", {
     format: "json"})
     .done(callback);
 }
