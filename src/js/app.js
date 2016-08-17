@@ -58,6 +58,7 @@ console.log(formData);
   });
 }
 
+
 var home = function (ctx) {
   var main = document.getElementById("main")
   /* position Louisiana */
@@ -75,9 +76,6 @@ var home = function (ctx) {
     $modal.html(modal).modal()
     setup_ajax();
   })  
-
-
-
 
 
   var html = homeView(ctx.data);
