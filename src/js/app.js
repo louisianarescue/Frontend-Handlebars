@@ -2,8 +2,7 @@ var homeView    = require("./views/home.hbs")
 var rescueModal = require("./views/modals/rescue.hbs")
 
 var home = function () {
-  console.log("dfasdfasdf");
-  var main = document.getElementById("main")
+  var main = document.getElementById("map-canvas")
   /* position Louisiana */
   var latlng = new google.maps.LatLng(30.984300, -91.962300);
   
@@ -20,13 +19,18 @@ var home = function () {
     setup_ajax();
   })  
 
-  var callback = function(data) {
-    var html = homeView({request: data});
-    $(main).html(html);
-  
+/**/
     var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);   
+/**/
+
+  var callback = function(data) {
+    console.log(data);
+    var html = homeView({request: data});
+    $("#main").append(html); //this may not work exactly as expected?  seems to b good for now tho -Kevin
+  
       
     $.each(data, function(key, data) {
+      console.log(data);
       var rescuee = data.rescuee
       var latLng = new google.maps.LatLng(rescuee.latitude, rescuee.longitude);
       var marker = new google.maps.Marker({
@@ -36,13 +40,14 @@ var home = function () {
     })
   }
 
-  $.getJSON("/request.json", {
-    format: "json"})
+  $.getJSON("http://www.louisianarescue.com/api/rescue/map", {
+    ///request.json
+    format: "json"
+  })
     .done(callback);
 }
 
 var setup_ajax = function(){
-  console.log($('#submit_rescue'));
 
   $('#submit_rescue').click(function(event){
     console.log("DF");
@@ -85,7 +90,6 @@ console.log(formData);
       console.log("fucking failed");
     });
   });
-  console.log("done");
 }
 
 $(document).ready(function(){

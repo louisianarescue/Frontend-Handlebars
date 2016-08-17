@@ -2951,8 +2951,7 @@ var homeView    = require("./views/home.hbs")
 var rescueModal = require("./views/modals/rescue.hbs")
 
 var home = function () {
-  console.log("dfasdfasdf");
-  var main = document.getElementById("main")
+  var main = document.getElementById("map-canvas")
   /* position Louisiana */
   var latlng = new google.maps.LatLng(30.984300, -91.962300);
   
@@ -2969,13 +2968,18 @@ var home = function () {
     setup_ajax();
   })  
 
-  var callback = function(data) {
-    var html = homeView({request: data});
-    $(main).html(html);
-  
+/**/
     var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);   
+/**/
+
+  var callback = function(data) {
+    console.log(data);
+    var html = homeView({request: data});
+    $("#main").append(html); //this may not work exactly as expected?  seems to b good for now tho -Kevin
+  
       
     $.each(data, function(key, data) {
+      console.log(data);
       var rescuee = data.rescuee
       var latLng = new google.maps.LatLng(rescuee.latitude, rescuee.longitude);
       var marker = new google.maps.Marker({
@@ -2985,13 +2989,14 @@ var home = function () {
     })
   }
 
-  $.getJSON("/request.json", {
-    format: "json"})
+  $.getJSON("http://www.louisianarescue.com/api/rescue/map", {
+    ///request.json
+    format: "json"
+  })
     .done(callback);
 }
 
 var setup_ajax = function(){
-  console.log($('#submit_rescue'));
 
   $('#submit_rescue').click(function(event){
     console.log("DF");
@@ -3034,7 +3039,6 @@ console.log(formData);
       console.log("fucking failed");
     });
   });
-  console.log("done");
 }
 
 $(document).ready(function(){
@@ -3101,7 +3105,7 @@ module.exports = HandlebarsCompiler.template({"1":function(depth0,helpers,partia
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-    return "<div class=\"modal-dialog\">\n  <div class=\"modal-content\">\n    <div class=\"modal-header\">\n      <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\n      <h4 class=\"modal-title\" id=\"myModalLabel\">Rescue Request</h4>\n    </div>\n    <div class=\"modal-body\">\n      <form class=\"form-horizontal\">\n        <fieldset>\n\n          <!-- Form Name -->\n          <legend>Who Needs a Rescue?</legend>\n\n          <!-- Text input-->\n          <div class=\"form-group\">\n            <label class=\"col-md-4 control-label\" for=\"name\">Name</label>\n            <div class=\"col-md-4\">\n              <input id=\"name\" name=\"name\" type=\"text\" placeholder=\"Name of Who we Look For\" class=\"form-control input-md\" required=\"\">\n            </div>\n          </div>\n\n          <!-- Text input-->\n          <div class=\"form-group\">\n            <label class=\"col-md-4 control-label\" for=\"people\">Number of People</label>\n            <div class=\"col-md-4\">\n              <input id=\"people\" name=\"people\" type=\"text\" placeholder=\"# of people with them\" class=\"form-control input-md\">\n\n            </div>\n          </div>\n\n          <!-- Select Basic -->\n          <div class=\"form-group\">\n            <label class=\"col-md-4 control-label\" for=\"level\">Urgency</label>\n            <div class=\"col-md-4\">\n              <select id=\"level\" name=\"level\" class=\"form-control\">\n                <option value=\"unknown\" active>Unknown</option>\n                <option value=\"injuries\">Injuries</option>\n                <option value=\"urgent\">Urgent</option>\n                <option value=\"lifethreatening\">Life Threatening</option>\n              </select>\n            </div>\n          </div>\n\n          <!-- Select Basic -->\n          <div class=\"form-group\">\n            <label class=\"col-md-4 control-label\" for=\"pet\">Animals</label>\n            <div class=\"col-md-4\">\n              <select id=\"pet\" name=\"pet\" class=\"form-control\">\n                <option value=\"No Pets\">No Pets</option>\n                <option value=\"Pets\">Pets</option>\n                <option value=\"Livestock\">Livestock</option>\n              </select>\n            </div>\n          </div>\n\n          <!-- Text input-->\n          <div class=\"form-group\">\n            <label class=\"col-md-4 control-label\" for=\"number\">Phone Number/Cell to Contact</label>\n            <div class=\"col-md-4\">\n              <input id=\"number\" name=\"number\" type=\"text\" placeholder=\"Contact #\" class=\"form-control input-md\">\n\n            </div>\n          </div>\n\n          <!-- Text input-->\n          <div class=\"form-group\">\n            <label class=\"col-md-4 control-label\" for=\"contact\">Request Submitted by</label>\n            <div class=\"col-md-4\">\n              <input id=\"contact\" name=\"contact\" type=\"text\" placeholder=\"Name Here\" class=\"form-control input-md\">\n\n            </div>\n          </div>\n\n          <!-- Text input-->\n          <div class=\"form-group\">\n            <label class=\"col-md-4 control-label\" for=\"address\">Address/Location Include City or Zip</label>\n            <div class=\"col-md-4\">\n              <input id=\"address\" name=\"address\" type=\"text\" placeholder=\"Address\" class=\"form-control input-lg\">\n\n            </div>\n          </div>\n\n          <!-- Textarea -->\n          <div class=\"form-group\">\n            <label class=\"col-md-4 control-label\" for=\"info\">Situation/Information</label>\n            <div class=\"col-md-4\">\n              <textarea class=\"form-control\" id=\"info\" name=\"info\"></textarea>\n            </div>\n          </div>\n\n        </fieldset>\n      </form>\n\n    </div>\n    <div class=\"modal-footer\">\n      <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\n      <button type=\"button\" id=\"submit_rescue\" class=\"btn btn-primary\" data-loading-text=\"<i class='fa fa-circle-o-notch fa-spin'></i> Sending Request...\">Save changes</button>\n    </div>\n  </div>\n</div>\n";
+    return "<div class=\"modal-dialog\">\n  <div class=\"modal-content\">\n    <div class=\"modal-header\">\n      <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\n      <h4 class=\"modal-title\" id=\"myModalLabel\">Rescue Request</h4>\n    </div>\n    <div class=\"modal-body\">\n      <form class=\"form-horizontal\">\n        <fieldset>\n\n          <!-- Form Name -->\n          <legend>Who Needs a Rescue?</legend>\n\n          <!-- Text input-->\n          <div class=\"form-group\">\n            <label class=\"col-md-4 control-label\" for=\"name\">Name</label>\n            <div class=\"col-md-4\">\n              <input id=\"name\" name=\"name\" type=\"text\" placeholder=\"Name of Who we Look For\" class=\"form-control input-md\" required=\"\">\n            </div>\n          </div>\n\n          <!-- Text input-->\n          <div class=\"form-group\">\n            <label class=\"col-md-4 control-label\" for=\"people\">Number of People</label>\n            <div class=\"col-md-4\">\n              <input id=\"people\" name=\"people\" type=\"text\" placeholder=\"# of people with them\" class=\"form-control input-md\">\n\n            </div>\n          </div>\n\n          <!-- Select Basic -->\n          <div class=\"form-group\">\n            <label class=\"col-md-4 control-label\" for=\"level\">Urgency</label>\n            <div class=\"col-md-4\">\n              <select id=\"level\" name=\"level\" class=\"form-control\">\n                <option value=\"unknown\" active>Unknown</option>\n                <option value=\"injuries\">Injuries</option>\n                <option value=\"urgent\">Urgent</option>\n                <option value=\"lifethreatening\">Life Threatening</option>\n              </select>\n            </div>\n          </div>\n\n          <!-- Select Basic -->\n          <div class=\"form-group\">\n            <label class=\"col-md-4 control-label\" for=\"pet\">Animals</label>\n            <div class=\"col-md-4\">\n              <select id=\"pet\" name=\"pet\" class=\"form-control\">\n                <option value=\"No Pets\">No Pets</option>\n                <option value=\"Pets\">Pets</option>\n                <option value=\"Livestock\">Livestock</option>\n              </select>\n            </div>\n          </div>\n\n          <!-- Text input-->\n          <div class=\"form-group\">\n            <label class=\"col-md-4 control-label\" for=\"number\">Phone Number/Cell to Contact</label>\n            <div class=\"col-md-4\">\n              <input id=\"number\" name=\"number\" type=\"text\" placeholder=\"Contact #\" class=\"form-control input-md\">\n\n            </div>\n          </div>\n\n          <!-- Text input-->\n          <div class=\"form-group\">\n            <label class=\"col-md-4 control-label\" for=\"contact\">Request Submitted by</label>\n            <div class=\"col-md-4\">\n              <input id=\"contact\" name=\"contact\" type=\"text\" placeholder=\"Name Here\" class=\"form-control input-md\">\n\n            </div>\n          </div>\n\n          <!-- Text input-->\n          <div class=\"form-group\">\n            <label class=\"col-md-4 control-label\" for=\"address\">Address/Location Include City</label>\n            <div class=\"col-md-4\">\n              <input id=\"address\" name=\"address\" type=\"text\" placeholder=\"Address\" class=\"form-control input-lg\">\n\n            </div>\n          </div>\n\n           <!-- Text input-->\n          <div class=\"form-group\">\n            <label class=\"col-md-4 control-label\" for=\"address\">Zip Code</label>\n            <div class=\"col-md-4\">\n              <input id=\"zip\" name=\"zip\" type=\"text\" placeholder=\"Zipcode\" class=\"form-control input-lg\">\n\n            </div>\n          </div>\n\n          <!-- Textarea -->\n          <div class=\"form-group\">\n            <label class=\"col-md-4 control-label\" for=\"info\">Situation/Information</label>\n            <div class=\"col-md-4\">\n              <textarea class=\"form-control\" id=\"info\" name=\"info\"></textarea>\n            </div>\n          </div>\n\n        </fieldset>\n      </form>\n\n    </div>\n    <div class=\"modal-footer\">\n      <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\n      <button type=\"button\" id=\"submit_rescue\" class=\"btn btn-primary\" data-loading-text=\"<i class='fa fa-circle-o-notch fa-spin'></i> Sending Request...\">Save changes</button>\n    </div>\n  </div>\n</div>\n";
 },"useData":true});
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/src/js/views/modals/rescue.hbs","/src/js/views/modals")
