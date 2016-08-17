@@ -8,5 +8,7 @@
   "contact": "Ms. John Doe",
   "address": "1234 Helpme Drive",
   "zip": "93705",
-  "info": "he doesnt exist but go look for him anyways."
+  "info": "he doesnt exist but go look for him anyways.",
+  "latitude": 30.960903,
+  "longitude": -92.196150
 }}]

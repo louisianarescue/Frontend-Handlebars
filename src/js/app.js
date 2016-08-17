@@ -25,7 +25,8 @@ var home = function () {
     var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);   
       
     $.each(data, function(key, data) {
-      var latLng = new google.maps.LatLng(data.latitude, data.longitude);
+      var rescuee = data.rescuee
+      var latLng = new google.maps.LatLng(rescuee.latitude, rescuee.longitude);
       var marker = new google.maps.Marker({
         position: latLng,
         map: map
