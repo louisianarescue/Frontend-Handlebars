@@ -31,7 +31,7 @@ var home = function () {
       
     $.each(data, function(key, data) {
       console.log(data);
-      var rescuee = data.rescuee
+      var rescuee = data;
       try{
         var latLng = new google.maps.LatLng(rescuee.latitude, rescuee.longitude);
         var marker = new google.maps.Marker({
