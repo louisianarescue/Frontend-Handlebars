@@ -1,6 +1,16 @@
 var homeView    = require("./views/home.hbs")
 var rescueModal = require("./views/modals/rescue.hbs")
 
+$.ajaxSetup({
+  accepts: 'application/json',
+  api: true,
+  beforeSend: function (xhr, settings) {
+    if(settings.api == true) {
+      settings.url = "http://www.louisianarescue.com/api" + settings.url;
+    }
+  }
+});
+
 var home = function () {
   var main = document.getElementById("main")
   /* position Louisiana */
@@ -19,7 +29,7 @@ var home = function () {
   })  
 
   var callback = function(data) {
-    var html = homeView({request: data});
+    var html = homeView(data);
     $(main).html(html);
   
     var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);   
@@ -34,8 +44,7 @@ var home = function () {
     })
   }
 
-  $.getJSON("/request.json", {
-    format: "json"})
+  $.getJSON("/rescue")
     .done(callback);
 }
 
