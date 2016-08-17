@@ -1,55 +1,17 @@
-var homeView    = require("./views/home.hbs")
-var rescueModal = require("./views/modals/rescue.hbs")
+var page        = require('page')
+var homeView    = require('./views/home.hbs')
+var rescueModal = require('./views/modals/rescue.hbs')
 
-var home = function () {
-  var main = document.getElementById("map-canvas")
-  /* position Louisiana */
-  var latlng = new google.maps.LatLng(30.984300, -91.962300);
-  
-  var mapOptions = {
-    center: latlng,
-    scrollWheel: false,
-    zoom: 10
-  };
-  
-  $('a[data-target="RequestModal"]').click(function(e) {
-    var $modal = $("#modal")
-    var modal  = rescueModal({});
-    $modal.html(modal).modal()
-    setup_ajax();
-  })  
 
-/**/
-    var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);   
-/**/
-
-  var callback = function(data) {
-    console.log(data);
-    var html = homeView({request: data});
-    $("#main").append(html); //this may not work exactly as expected?  seems to b good for now tho -Kevin
-  
-      
-    $.each(data, function(key, data) {
-      console.log(data);
-      var rescuee = data;
-      try{
-        var latLng = new google.maps.LatLng(rescuee.latitude, rescuee.longitude);
-        var marker = new google.maps.Marker({
-          position: latLng,
-          map: map
-        });
-      } catch(e){
-
-      }
-    })
+$.ajaxSetup({
+  accepts: 'application/json',
+  api: true,
+  beforeSend: function (xhr, settings) {
+    if(settings.api === true) {
+      settings.url = "http://www.louisianarescue.com/api" + settings.url;
+    }
   }
-
-  $.getJSON("http://www.louisianarescue.com/api/rescue/map", {
-    ///request.json
-    format: "json"
-  })
-    .done(callback);
-}
+});
 
 var setup_ajax = function(){
 
@@ -78,7 +40,7 @@ console.log(formData);
     $(this).button('loading');
     $.ajax({
             type        : 'POST', 
-            url         : 'http://www.louisianarescue.com/api/rescue/help',//'http://127.0.0.1:80', 
+            url         : '/rescue/help',//'http://127.0.0.1:80', 
             data        : formData, 
             dataType    : 'json',
             encode      : true
@@ -96,7 +58,82 @@ console.log(formData);
   });
 }
 
+var home = function (ctx) {
+  var main = document.getElementById("main")
+  /* position Louisiana */
+  var latlng = new google.maps.LatLng(30.984300, -91.962300);
+  
+  var mapOptions = {
+    center: latlng,
+    scrollWheel: false,
+    zoom: 10
+  };
+  
+  $('a[data-target="RequestModal"]').click(function(e) {
+    var $modal = $("#modal")
+    var modal  = rescueModal({});
+    $modal.html(modal).modal()
+    setup_ajax();
+  })  
+
+
+
+
+
+  var html = homeView(ctx.data);
+  $(main).html(html);
+
+  var mapEl  = document.getElementById("map-canvas");
+  var map    = new google.maps.Map(mapEl, mapOptions);   
+  var bounds = new google.maps.LatLngBounds();
+
+  $.each(ctx.data.request, function(key, data) {
+    var location = data.location
+
+    if(typeof location != 'undefined') {
+      var latLng = new google.maps.LatLng(location.lat, location.lng);
+      var marker = new google.maps.Marker({
+        position: latLng,
+        map: map
+      });
+
+      bounds.extend(marker.position);
+    }
+
+    // Don't zoom in too far on only one marker
+    if (bounds.getNorthEast().equals(bounds.getSouthWest())) {
+      var extendPoint1 = new google.maps.LatLng(bounds.getNorthEast().lat() + 0.01, bounds.getNorthEast().lng() + 0.01);
+      var extendPoint2 = new google.maps.LatLng(bounds.getNorthEast().lat() - 0.01, bounds.getNorthEast().lng() - 0.01);
+      bounds.extend(extendPoint1);
+      bounds.extend(extendPoint2);
+    }
+    
+    map.fitBounds(bounds);
+  })
+
+  $(window).resize(function() {
+    if($(window).width() < 750) {
+      $(mapEl).css("height", "200px")
+    } else {
+      $(mapEl).css("height", $(window).height() - 20)
+    }
+    
+    google.maps.event.trigger(map, "resize");
+    
+  }).resize();
+}
+
+var loadRescue = function(ctx, next) {
+  $.getJSON("/rescue", function(data) {
+      ctx.data = data;
+      next();
+  })
+}
+
+// routes
+
+page("/", loadRescue, home)
+
 $(document).ready(function(){
-  home();
-  setup_ajax();
+  page({click: false});
 })
