@@ -17,7 +17,6 @@ gulp.task('js', function() {
     .pipe(gulp.dest('js'))
 });
 
-
 gulp.task('clean', function() {
   return gulp.src('js', {read: false})
     .pipe(clean());

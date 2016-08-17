@@ -1,4 +1,5 @@
-var templates  = require("./templates.js")
+var homeView    = require("./views/home.hbs")
+var rescueModal = require("./views/modals/rescue.hbs")
 
 var home = function () {
   var main = document.getElementById("main")
@@ -11,12 +12,17 @@ var home = function () {
     zoom: 10
   };
 
-  // render
-  var html = templates.home({});
-  main.innerHTML = html;
+  var html = homeView({});
+  $(main).html(html);
   
   var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 
+  $('a[data-target="RequestModal"]').click(function(e) {
+    var $modal = $("#modal")
+    var modal  = rescueModal({});
+    $modal.html(modal).modal()
+  })
+  
   var callback = function(data) {
     $.each(data, function(key, data) {
       var latLng = new google.maps.LatLng(data.latitude, data.longitude);
