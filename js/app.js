@@ -1902,7 +1902,16 @@ function isnan (val) {
 }
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/node_modules/buffer/index.js","/node_modules/buffer")
-},{"_process":14,"base64-js":1,"buffer":2,"ieee754":12,"isarray":13}],3:[function(require,module,exports){
+},{"_process":14,"base64-js":1,"buffer":2,"ieee754":13,"isarray":3}],3:[function(require,module,exports){
+(function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
+var toString = {}.toString;
+
+module.exports = Array.isArray || function (arr) {
+  return toString.call(arr) == '[object Array]';
+};
+
+}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/node_modules/buffer/node_modules/isarray/index.js","/node_modules/buffer/node_modules/isarray")
+},{"_process":14,"buffer":2}],4:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 
@@ -1965,7 +1974,7 @@ inst['default'] = inst;
 exports['default'] = inst;
 module.exports = exports['default'];
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/node_modules/handlebars/dist/cjs/handlebars.runtime.js","/node_modules/handlebars/dist/cjs")
-},{"./handlebars/base":4,"./handlebars/exception":5,"./handlebars/no-conflict":6,"./handlebars/runtime":7,"./handlebars/safe-string":8,"./handlebars/utils":9,"_process":14,"buffer":2}],4:[function(require,module,exports){
+},{"./handlebars/base":5,"./handlebars/exception":6,"./handlebars/no-conflict":7,"./handlebars/runtime":8,"./handlebars/safe-string":9,"./handlebars/utils":10,"_process":14,"buffer":2}],5:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 
@@ -2241,7 +2250,7 @@ function createFrame(object) {
 
 /* [args, ]options */
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/node_modules/handlebars/dist/cjs/handlebars/base.js","/node_modules/handlebars/dist/cjs/handlebars")
-},{"./exception":5,"./utils":9,"_process":14,"buffer":2}],5:[function(require,module,exports){
+},{"./exception":6,"./utils":10,"_process":14,"buffer":2}],6:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 
@@ -2282,7 +2291,7 @@ Exception.prototype = new Error();
 exports['default'] = Exception;
 module.exports = exports['default'];
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/node_modules/handlebars/dist/cjs/handlebars/exception.js","/node_modules/handlebars/dist/cjs/handlebars")
-},{"_process":14,"buffer":2}],6:[function(require,module,exports){
+},{"_process":14,"buffer":2}],7:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 
@@ -2303,7 +2312,7 @@ exports['default'] = function (Handlebars) {
 
 module.exports = exports['default'];
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/node_modules/handlebars/dist/cjs/handlebars/no-conflict.js","/node_modules/handlebars/dist/cjs/handlebars")
-},{"_process":14,"buffer":2}],7:[function(require,module,exports){
+},{"_process":14,"buffer":2}],8:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 
@@ -2538,7 +2547,7 @@ function initData(context, data) {
   return data;
 }
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/node_modules/handlebars/dist/cjs/handlebars/runtime.js","/node_modules/handlebars/dist/cjs/handlebars")
-},{"./base":4,"./exception":5,"./utils":9,"_process":14,"buffer":2}],8:[function(require,module,exports){
+},{"./base":5,"./exception":6,"./utils":10,"_process":14,"buffer":2}],9:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 
@@ -2555,7 +2564,7 @@ SafeString.prototype.toString = SafeString.prototype.toHTML = function () {
 exports['default'] = SafeString;
 module.exports = exports['default'];
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/node_modules/handlebars/dist/cjs/handlebars/safe-string.js","/node_modules/handlebars/dist/cjs/handlebars")
-},{"_process":14,"buffer":2}],9:[function(require,module,exports){
+},{"_process":14,"buffer":2}],10:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 
@@ -2672,19 +2681,19 @@ function appendContextPath(contextPath, id) {
   return (contextPath ? contextPath + '.' : '') + id;
 }
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/node_modules/handlebars/dist/cjs/handlebars/utils.js","/node_modules/handlebars/dist/cjs/handlebars")
-},{"_process":14,"buffer":2}],10:[function(require,module,exports){
+},{"_process":14,"buffer":2}],11:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 // Create a simple path alias to allow browserify to resolve
 // the runtime on a supported path.
 module.exports = require('./dist/cjs/handlebars.runtime')['default'];
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/node_modules/handlebars/runtime.js","/node_modules/handlebars")
-},{"./dist/cjs/handlebars.runtime":3,"_process":14,"buffer":2}],11:[function(require,module,exports){
+},{"./dist/cjs/handlebars.runtime":4,"_process":14,"buffer":2}],12:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 module.exports = require("handlebars/runtime")["default"];
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/node_modules/hbsfy/runtime.js","/node_modules/hbsfy")
-},{"_process":14,"buffer":2,"handlebars/runtime":10}],12:[function(require,module,exports){
+},{"_process":14,"buffer":2,"handlebars/runtime":11}],13:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
@@ -2772,15 +2781,6 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 }
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/node_modules/ieee754/index.js","/node_modules/ieee754")
-},{"_process":14,"buffer":2}],13:[function(require,module,exports){
-(function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
-var toString = {}.toString;
-
-module.exports = Array.isArray || function (arr) {
-  return toString.call(arr) == '[object Array]';
-};
-
-}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/node_modules/isarray/index.js","/node_modules/isarray")
 },{"_process":14,"buffer":2}],14:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 // shim for using process in browser
@@ -2951,6 +2951,7 @@ var homeView    = require("./views/home.hbs")
 var rescueModal = require("./views/modals/rescue.hbs")
 
 var home = function () {
+  console.log("dfasdfasdf");
   var main = document.getElementById("main")
   /* position Louisiana */
   var latlng = new google.maps.LatLng(30.984300, -91.962300);
@@ -2960,21 +2961,23 @@ var home = function () {
     scrollWheel: false,
     zoom: 10
   };
-
-  var html = homeView({});
-  $(main).html(html);
   
-  var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-
   $('a[data-target="RequestModal"]').click(function(e) {
     var $modal = $("#modal")
     var modal  = rescueModal({});
     $modal.html(modal).modal()
-  })
-  
+    setup_ajax();
+  })  
+
   var callback = function(data) {
+    var html = homeView({request: data});
+    $(main).html(html);
+  
+    var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);   
+      
     $.each(data, function(key, data) {
-      var latLng = new google.maps.LatLng(data.latitude, data.longitude);
+      var rescuee = data.rescuee
+      var latLng = new google.maps.LatLng(rescuee.latitude, rescuee.longitude);
       var marker = new google.maps.Marker({
         position: latLng,
         map: map
@@ -2982,13 +2985,62 @@ var home = function () {
     })
   }
 
-  $.getJSON("http://louisianarescue.com/api/rescue/map", {
+  $.getJSON("/request.json", {
     format: "json"})
     .done(callback);
 }
 
+var setup_ajax = function(){
+  console.log($('#submit_rescue'));
+
+  $('#submit_rescue').click(function(event){
+    console.log("DF");
+    key_val_pairs = [
+      ['name', 'name'],
+      ['people', 'people'],
+//      ['level', 'level'],
+//      ['pet', 'pet'],
+      ['number', 'number'],
+      ['email', 'email'],
+
+      ['contact', 'contact'],
+      ['address', 'address'],
+      ['zip', 'zip'],
+      ['info', 'info']
+    ]
+    var formData = {'pet': $('#pet').find("option:selected").text(),
+                    'level': $('#level').find("option:selected").text()};
+    for(i = 0; i < key_val_pairs.length; i++){
+      formData[key_val_pairs[i][0]] = $('input[name='+key_val_pairs[i][1]+']').val() || null;
+    }
+console.log(formData);
+    $("#request-modal-form").addClass("form-loading");
+    $("#loading").removeClass("form-loading");
+    $.ajax({
+            type        : 'POST', 
+            url         : 'http://www.louisianarescue.com/api/rescue/help',//'http://127.0.0.1:80', 
+            data        : formData, 
+            dataType    : 'json',
+            encode      : true
+    })
+    .done(function(data){
+      $("#request-modal-body").html("<marquee>Loading...</marquee>")
+      $("#loading").addClass("form-loading");
+
+            console.log("done");
+    })
+    .fail(function(){
+            $("#loading").addClass("form-loading");
+
+      console.log("fucking failed");
+    });
+  });
+  console.log("done");
+}
+
 $(document).ready(function(){
   home();
+  setup_ajax();
 })
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/src/js/app.js","/src/js")
@@ -3045,13 +3097,13 @@ module.exports = HandlebarsCompiler.template({"1":function(depth0,helpers,partia
 },"useData":true});
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/src/js/views/home.hbs","/src/js/views")
-},{"_process":14,"buffer":2,"hbsfy/runtime":11}],17:[function(require,module,exports){
+},{"_process":14,"buffer":2,"hbsfy/runtime":12}],17:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-    return "<div class=\"modal-dialog\">\n  <div class=\"modal-content\">\n    <div class=\"modal-header\">\n      <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\n      <h4 class=\"modal-title\" id=\"myModalLabel\">Rescue Request</h4>\n    </div>\n    <div class=\"modal-body\">\n      <form class=\"form-horizontal\">\n        <fieldset>\n\n          <!-- Form Name -->\n          <legend>Who Needs a Rescue?</legend>\n\n          <!-- Text input-->\n          <div class=\"form-group\">\n            <label class=\"col-md-4 control-label\" for=\"name\">Name</label>\n            <div class=\"col-md-4\">\n              <input id=\"name\" name=\"name\" type=\"text\" placeholder=\"Name of Who we Look For\" class=\"form-control input-md\" required=\"\">\n            </div>\n          </div>\n\n          <!-- Text input-->\n          <div class=\"form-group\">\n            <label class=\"col-md-4 control-label\" for=\"people\">Number of People</label>\n            <div class=\"col-md-4\">\n              <input id=\"people\" name=\"people\" type=\"text\" placeholder=\"# of people with them\" class=\"form-control input-md\">\n\n            </div>\n          </div>\n\n          <!-- Select Basic -->\n          <div class=\"form-group\">\n            <label class=\"col-md-4 control-label\" for=\"level\">Urgency</label>\n            <div class=\"col-md-4\">\n              <select id=\"level\" name=\"level\" class=\"form-control\">\n                <option value=\"unknown\" active>Unknown</option>\n                <option value=\"injuries\">Injuries</option>\n                <option value=\"urgent\">Urgent</option>\n                <option value=\"lifethreatening\">Life Threatening</option>\n              </select>\n            </div>\n          </div>\n\n          <!-- Select Basic -->\n          <div class=\"form-group\">\n            <label class=\"col-md-4 control-label\" for=\"pet\">Animals</label>\n            <div class=\"col-md-4\">\n              <select id=\"pet\" name=\"pet\" class=\"form-control\">\n                <option value=\"No Pets\">No Pets</option>\n                <option value=\"Pets\">Pets</option>\n                <option value=\"Livestock\">Livestock</option>\n              </select>\n            </div>\n          </div>\n\n          <!-- Text input-->\n          <div class=\"form-group\">\n            <label class=\"col-md-4 control-label\" for=\"number\">Phone Number/Cell to Contact</label>\n            <div class=\"col-md-4\">\n              <input id=\"number\" name=\"number\" type=\"text\" placeholder=\"Contact #\" class=\"form-control input-md\">\n\n            </div>\n          </div>\n\n          <!-- Text input-->\n          <div class=\"form-group\">\n            <label class=\"col-md-4 control-label\" for=\"contact\">Request Submitted by</label>\n            <div class=\"col-md-4\">\n              <input id=\"contact\" name=\"contact\" type=\"text\" placeholder=\"Name Here\" class=\"form-control input-md\">\n\n            </div>\n          </div>\n\n          <!-- Text input-->\n          <div class=\"form-group\">\n            <label class=\"col-md-4 control-label\" for=\"address\">Address/Location Include City or Zip</label>\n            <div class=\"col-md-4\">\n              <input id=\"address\" name=\"address\" type=\"text\" placeholder=\"Address\" class=\"form-control input-lg\">\n\n            </div>\n          </div>\n\n          <!-- Textarea -->\n          <div class=\"form-group\">\n            <label class=\"col-md-4 control-label\" for=\"info\">Situation/Information</label>\n            <div class=\"col-md-4\">\n              <textarea class=\"form-control\" id=\"info\" name=\"info\"></textarea>\n            </div>\n          </div>\n\n        </fieldset>\n      </form>\n\n    </div>\n    <div class=\"modal-footer\">\n      <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\n      <button type=\"button\" class=\"btn btn-primary\">Save changes</button>\n    </div>\n  </div>\n</div>\n";
+    return "<div class=\"modal-dialog\">\n  <div class=\"modal-content\">\n    <div class=\"modal-header\">\n      <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\n      <h4 class=\"modal-title\" id=\"myModalLabel\">Rescue Request</h4>\n    </div>\n    <div class=\"modal-body\">\n      <form class=\"form-horizontal\">\n        <fieldset>\n\n          <!-- Form Name -->\n          <legend>Who Needs a Rescue?</legend>\n\n          <!-- Text input-->\n          <div class=\"form-group\">\n            <label class=\"col-md-4 control-label\" for=\"name\">Name</label>\n            <div class=\"col-md-4\">\n              <input id=\"name\" name=\"name\" type=\"text\" placeholder=\"Name of Who we Look For\" class=\"form-control input-md\" required=\"\">\n            </div>\n          </div>\n\n          <!-- Text input-->\n          <div class=\"form-group\">\n            <label class=\"col-md-4 control-label\" for=\"people\">Number of People</label>\n            <div class=\"col-md-4\">\n              <input id=\"people\" name=\"people\" type=\"text\" placeholder=\"# of people with them\" class=\"form-control input-md\">\n\n            </div>\n          </div>\n\n          <!-- Select Basic -->\n          <div class=\"form-group\">\n            <label class=\"col-md-4 control-label\" for=\"level\">Urgency</label>\n            <div class=\"col-md-4\">\n              <select id=\"level\" name=\"level\" class=\"form-control\">\n                <option value=\"unknown\" active>Unknown</option>\n                <option value=\"injuries\">Injuries</option>\n                <option value=\"urgent\">Urgent</option>\n                <option value=\"lifethreatening\">Life Threatening</option>\n              </select>\n            </div>\n          </div>\n\n          <!-- Select Basic -->\n          <div class=\"form-group\">\n            <label class=\"col-md-4 control-label\" for=\"pet\">Animals</label>\n            <div class=\"col-md-4\">\n              <select id=\"pet\" name=\"pet\" class=\"form-control\">\n                <option value=\"No Pets\">No Pets</option>\n                <option value=\"Pets\">Pets</option>\n                <option value=\"Livestock\">Livestock</option>\n              </select>\n            </div>\n          </div>\n\n          <!-- Text input-->\n          <div class=\"form-group\">\n            <label class=\"col-md-4 control-label\" for=\"number\">Phone Number/Cell to Contact</label>\n            <div class=\"col-md-4\">\n              <input id=\"number\" name=\"number\" type=\"text\" placeholder=\"Contact #\" class=\"form-control input-md\">\n\n            </div>\n          </div>\n\n          <!-- Text input-->\n          <div class=\"form-group\">\n            <label class=\"col-md-4 control-label\" for=\"contact\">Request Submitted by</label>\n            <div class=\"col-md-4\">\n              <input id=\"contact\" name=\"contact\" type=\"text\" placeholder=\"Name Here\" class=\"form-control input-md\">\n\n            </div>\n          </div>\n\n          <!-- Text input-->\n          <div class=\"form-group\">\n            <label class=\"col-md-4 control-label\" for=\"address\">Address/Location Include City or Zip</label>\n            <div class=\"col-md-4\">\n              <input id=\"address\" name=\"address\" type=\"text\" placeholder=\"Address\" class=\"form-control input-lg\">\n\n            </div>\n          </div>\n\n          <!-- Textarea -->\n          <div class=\"form-group\">\n            <label class=\"col-md-4 control-label\" for=\"info\">Situation/Information</label>\n            <div class=\"col-md-4\">\n              <textarea class=\"form-control\" id=\"info\" name=\"info\"></textarea>\n            </div>\n          </div>\n\n        </fieldset>\n      </form>\n\n    </div>\n    <div class=\"modal-footer\">\n      <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\n      <button type=\"button\" id=\"submit_rescue\" class=\"btn btn-primary\">Save changes</button>\n    </div>\n  </div>\n</div>\n";
 },"useData":true});
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/src/js/views/modals/rescue.hbs","/src/js/views/modals")
-},{"_process":14,"buffer":2,"hbsfy/runtime":11}]},{},[15]);
+},{"_process":14,"buffer":2,"hbsfy/runtime":12}]},{},[15]);
