@@ -2,7 +2,7 @@
 
 ```
 npm install
-gulp 
+npm start
 ```
 
 and connect to ```localhost:8080```
