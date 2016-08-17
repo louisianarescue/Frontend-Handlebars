@@ -1,0 +1,54 @@
+
+<div class="row">
+  <div class="col-xs-4" id="left">
+
+    <h2>Rescues in Need</h2>
+
+    <!-- item list -->
+
+    {{#each request}}
+
+    <div class="panel panel-default">
+      <div class="panel-heading">Rescue Requested: {{ this.rescuee.name }}({{ this.rescuee.people }})</div>
+      <p class="panel-body">
+        <ul class="">
+          <li><strong class="">Name: </strong>{{ this.rescuee.name }}</li>
+          <li><strong class="">People: </strong>{{ this.rescuee.people }}</li>
+          <li><strong class="">Urgency: </strong>{{ this.rescuee.level }}</li>
+          <li><strong class="">Pet: </strong> {{ this.rescuee.pet }}</li>
+          <li><strong class="">Phone Number: </strong> {{ this.rescuee.number }}</li>
+          <li><strong class="">Address: </strong> {{ this.rescuee.address }}</li>
+          <li><strong class="">Situation/Information: </strong> {{ this.rescuee.info }}</li>
+        </ul>
+        <hr class="">
+        <ul class="">
+
+          {{#if this.rescued_on}}
+          <li><strong class="">Rescue Status: </strong> {{ this.rescued_on }}</li>
+          {{else}}
+          <li><strong class="">Rescue Status: </strong> Unknown</li>
+          {{/if}}
+
+          <li><strong class="">Updated On: </strong> {{ this.updated_on }}</li>
+          <li><strong class="">Created On: </strong> {{ this.created_on }}</li>
+        </ul>
+      </p>
+      <p class="panel-footer btn-group btn-group-justified">
+        <div class="btn-group">
+          <button id="view-location" data-lat="{{ this.location.lat }}" data-lng="{{ this.location.lng }}" class="btn btn-primary">View Location on Map</button>
+        </div>
+        <div class="btn-group">
+          <button id="rescue-attempt" data-rescue="{{ this._id }}" class="btn btn-danger" data-toggle="modal" data-target="#rescuerModal">Click to Attempt Rescue</button>
+        </div>
+      </p>
+    </div>
+    <hr>
+
+    {{/each}}
+
+    <!-- /item list -->
+  </div>
+  <div class="col-xs-8">
+    <div id="map-canvas"></div>
+  </div>
+</div>

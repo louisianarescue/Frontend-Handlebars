@@ -1,0 +1,19 @@
+{
+  "name": "larescue",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "gulp": "3.9.1",
+    "gulp-clean": "0.3.2",
+    "hbsfy": "2.7.0",
+    "browserify":"13.1.0",
+    "vinyl-source-stream": "1.1.0",
+    "handlebars":"3.0.3"
+  }
+}
