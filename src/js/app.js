@@ -31,8 +31,9 @@ var home = function (ctx) {
 
   var html = homeView(ctx.data);
   $(main).html(html);
-  
-  var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);   
+
+  var mapEl = document.getElementById("map-canvas");
+  var map = new google.maps.Map(mapEl, mapOptions);   
 
   $.each(ctx.data.request, function(key, data) {
     var rescuee = data.rescuee
@@ -45,6 +46,17 @@ var home = function (ctx) {
       });
     }
   })
+
+  $(window).resize(function() {
+    if($(window).width() < 750) {
+      $(mapEl).css("height", "200px")
+    } else {
+      $(mapEl).css("height", $(window).height() - 20)
+    }
+    
+    google.maps.event.trigger(map, "resize");
+    
+  }).resize();
 }
 
 
