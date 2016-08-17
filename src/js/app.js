@@ -65,8 +65,8 @@ var setup_ajax = function(){
       formData[key_val_pairs[i][0]] = $('input[name='+key_val_pairs[i][1]+']').val() || null;
     }
 console.log(formData);
-    $("#request-modal-form").addClass("form-loading");
-    $("#loading").removeClass("form-loading");
+    $this = $(this);
+    $(this).button('loading');
     $.ajax({
             type        : 'POST', 
             url         : 'http://www.louisianarescue.com/api/rescue/help',//'http://127.0.0.1:80', 
@@ -75,13 +75,12 @@ console.log(formData);
             encode      : true
     })
     .done(function(data){
-      $("#request-modal-body").html("<marquee>Loading...</marquee>")
-      $("#loading").addClass("form-loading");
+        //$this.button('')
 
             console.log("done");
     })
     .fail(function(){
-            $("#loading").addClass("form-loading");
+          $this.button('reset');
 
       console.log("fucking failed");
     });
