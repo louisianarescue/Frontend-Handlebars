@@ -13,7 +13,7 @@ var home = function () {
 
   // render
   var html = templates.home({});
-  main.innerHTML = html
+  main.innerHTML = html;
   
   var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 
@@ -29,7 +29,7 @@ var home = function () {
 
   $.getJSON("http://louisianarescue.com/api/rescue/map", {
     format: "json"})
-    .done(cb);
+    .done(callback);
 }
 
 $(document).ready(function(){

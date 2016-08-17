@@ -69,7 +69,6 @@
       </div><!-- /.container-fluid -->
     </nav>
 
-
     <div id="main" class="container-fluid">
     </div>
 
@@ -91,8 +90,112 @@
         </div>
       </div>
     </footer>
+
+    <div class="modal fade" id="RequestModal" tabindex="-1" role="dialog" aria-labelledby="RequestModal" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Rescue Request</h4>
+          </div>
+          <div class="modal-body">
+            <form class="form-horizontal">
+              <fieldset>
+
+                <!-- Form Name -->
+                <legend>Who Needs a Rescue?</legend>
+
+                <!-- Text input-->
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="name">Name</label>
+                  <div class="col-md-4">
+                    <input id="name" name="name" type="text" placeholder="Name of Who we Look For" class="form-control input-md" required="">
+                  </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="people">Number of People</label>
+                  <div class="col-md-4">
+                    <input id="people" name="people" type="text" placeholder="# of people with them" class="form-control input-md">
+
+                  </div>
+                </div>
+
+                <!-- Select Basic -->
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="level">Urgency</label>
+                  <div class="col-md-4">
+                    <select id="level" name="level" class="form-control">
+                      <option value="unknown" active>Unknown</option>
+                      <option value="injuries">Injuries</option>
+                      <option value="urgent">Urgent</option>
+                      <option value="lifethreatening">Life Threatening</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Select Basic -->
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="pet">Animals</label>
+                  <div class="col-md-4">
+                    <select id="pet" name="pet" class="form-control">
+                      <option value="No Pets">No Pets</option>
+                      <option value="Pets">Pets</option>
+                      <option value="Livestock">Livestock</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="number">Phone Number/Cell to Contact</label>
+                  <div class="col-md-4">
+                    <input id="number" name="number" type="text" placeholder="Contact #" class="form-control input-md">
+
+                  </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="contact">Request Submitted by</label>
+                  <div class="col-md-4">
+                    <input id="contact" name="contact" type="text" placeholder="Name Here" class="form-control input-md">
+
+                  </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="address">Address/Location Include City or Zip</label>
+                  <div class="col-md-4">
+                    <input id="address" name="address" type="text" placeholder="Address" class="form-control input-lg">
+
+                  </div>
+                </div>
+
+                <!-- Textarea -->
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="info">Situation/Information</label>
+                  <div class="col-md-4">
+                    <textarea class="form-control" id="info" name="info"></textarea>
+                  </div>
+                </div>
+
+              </fieldset>
+            </form>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- script references -->
-    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDCow6EjmaPsKvnq4Pj24oS9PVDCqPrXM4&sensor=true&extension=.js&output=embed"></script>    
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDCow6EjmaPsKvnq4Pj24oS9PVDCqPrXM4&sensor=true&extension=.js&output=embed"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>  <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="js/app.js"></script>
