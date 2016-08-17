@@ -1,5 +1,6 @@
-var homeView    = require("./views/home.hbs")
-var rescueModal = require("./views/modals/rescue.hbs")
+var page        = require('page')
+var homeView    = require('./views/home.hbs')
+var rescueModal = require('./views/modals/rescue.hbs')
 
 $.ajaxSetup({
   accepts: 'application/json',
@@ -11,7 +12,7 @@ $.ajaxSetup({
   }
 });
 
-var home = function () {
+var home = function (ctx) {
   var main = document.getElementById("main")
   /* position Louisiana */
   var latlng = new google.maps.LatLng(30.984300, -91.962300);
@@ -28,26 +29,36 @@ var home = function () {
     $modal.html(modal).modal()
   })  
 
-  var callback = function(data) {
-    var html = homeView(data);
-    $(main).html(html);
+  var html = homeView(ctx.data);
+  $(main).html(html);
   
-    var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);   
-      
-    $.each(data, function(key, data) {
-      var rescuee = data.rescuee
+  var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);   
+
+  $.each(ctx.data.request, function(key, data) {
+    var rescuee = data.rescuee
+    if(typeof rescuee != 'undefined') {
+
       var latLng = new google.maps.LatLng(rescuee.latitude, rescuee.longitude);
       var marker = new google.maps.Marker({
         position: latLng,
         map: map
       });
-    })
-  }
-
-  $.getJSON("/rescue")
-    .done(callback);
+    }
+  })
 }
 
+
+var loadRescue = function(ctx, next) {
+  $.getJSON("/rescue", function(data) {
+    ctx.data = data;
+    next();
+  });
+}
+
+// routes
+
+page("/", loadRescue, home)
+
 $(document).ready(function(){
-  home();
+  page({click: false});
 })
